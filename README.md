@@ -6,7 +6,9 @@ Incase you've seen my other repositories of similiar category I've written all t
 ## Do you want to download all the codes at once?
 ### For Linux user:
 All the linux distributers have git installed in their system so they simply paste the following code in their terminal to get a local copy in your system.  
-`git clone https://github.com/singhnir/numerical-methods.git`
+```
+git clone https://github.com/singhnir/numerical-methods.git
+```
 ### For Windows user:
 Normally no windows has git preinstalled so previous command doesn't work on it but again you can download a zip copy of the codes clicking [**here**](https://github.com/singhnir/numerical-methods/archive/refs/heads/main.zip).
 
