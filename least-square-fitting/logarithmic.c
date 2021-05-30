@@ -1,7 +1,10 @@
-// expontetial fitting in the form of y=a*x^b
+// power law fitting in the form of y=a*x^b
 #include<stdio.h>
 #include<math.h>
-
+// function to be fitted
+float f(float a,float b,float x){
+  return a*pow(x,b);
+}
 int main()
 {
     int i,n=5; // no of points
@@ -39,13 +42,13 @@ int main()
     FILE*fp=NULL;
     fp=fopen("logarithmic.txt","w");
     // converting back to original form
-    for(i=0;i<n;i++) {
-        x[i]=exp(x[i]);
-        y[i]=exp(y[i]);
-    }
+    // for(i=0;i<n;i++) {
+    //     x[i]=exp(x[i]);
+    //     y[i]=exp(y[i]);
+    // }
     //calculating the fitted points
-    for (i=0;i<n;i++){ 
-        y[i]=a0*pow(x[i],a1);
-        fprintf(fp,"%f\t%f\n",x[i],y[i]);
+    float x1;
+    for(x1=1;x1<=5;x1+=0.1) {
+        fprintf(fp,"%.2f\t%f\n",x1,f(a0,a1,x1));
     }
 }

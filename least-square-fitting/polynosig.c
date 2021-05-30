@@ -2,6 +2,13 @@
 // change the arrays according to your problem
 #include<stdio.h>
 #include<math.h>
+// function to be fitted
+double f(int n,double a[n],double x){
+    double sum=0;
+    for (int i=0;i<n;++i)
+        sum += a[i]*pow(x,i);
+  return sum;
+}
 // function to solve AX=b for X
 void gausspivot(int n,double A[n][n+1],double x[]){
     int i,j,k;
@@ -72,18 +79,16 @@ int main()
     printf("The coefficients for order [%d] are:\n",n-1);
     gausspivot(n,A,a);
 
+    // exportng the fitted data-points
     FILE*fp=NULL;
     fp=fopen("polynosig.txt","w");
-    // defining the polynomial
-    k=0;
-    while(k<N) {   
-        double sum=0;
-        for (i=0;i<n;++i)
-            sum += a[i]*pow(x[k],i);
-        yf[k]=sum;
-        fprintf(fp,"%.3lf\t%lf\n",x[k],yf[k]);
-        k++;
+    float X;
+    for(X=0;X<=0.19;X+=0.01) {
+        fprintf(fp,"%.2f\t%f\n",X,f(n,a,X));
     }
+    // for chi square calculation
+    for (k=0;k<N;++k)  
+        yf[k]=f(n,a,x[k]);
     // calculating the chi square
     double chi=0;
     for (i=0;i<N;++i)

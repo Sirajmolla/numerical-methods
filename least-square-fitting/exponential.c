@@ -1,7 +1,10 @@
 // expontetial fitting in the form of y=a*exp(b*x)
 #include<stdio.h>
 #include<math.h>
-
+// function to be fitted
+float f(float a,float b,float x){
+  return a*exp(b*x);
+}
 int main()
 {
     int i,n=7; // no of points
@@ -34,12 +37,12 @@ int main()
     a1=(XY-X*Y)/(X2-X*X);
     a0=exp(a0); // converting back to original form
     printf("The coefficients a0=%f\ta1=%f\n",a0,a1);
-    
+
+    // exportng the fitted data-points
     FILE*fp=NULL;
-    fp=fopen("expontetial.txt","w");
-    //calculating the fitted points
-    for (i=0;i<n;i++){ 
-        y[i]=a0*exp(a1*x[i]);
-        fprintf(fp,"%f\t%f\n",x[i],y[i]);
+    fp=fopen("exponential.txt","w");
+    float x1;
+    for(x1=1;x1<=7;x1+=0.1) {
+        fprintf(fp,"%.2f\t%f\n",x1,f(a0,a1,x1));
     }
 }
